@@ -5,6 +5,9 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from parsing import Parser
 from dowloader import Dowloader
 from dson import Data
+import datetime
+
+now = datetime.datetime.now().hour
 
 logging.basicConfig(level=logging.INFO)
 
@@ -38,7 +41,13 @@ async def menu(message: types.message):
     position = message.text
     if position in data.data.keys():
         for i in range(len(data.data[message.text])):
-            await bot.send_message(message.chat.id, f'{data.data[message.text][i]["Название"]} - {data.data[message.text][i]["Обед"]}')
+            time = "Завтрак"
+            if now > 10 and now < 17:
+                time = "Обед"
+            elif now > 16:
+                time = "Ужин"
+            if data.data[message.text][i][time] != '—':
+                await bot.send_message(message.chat.id, f'{data.data[message.text][i]["Название"]} - {data.data[message.text][i][time]}')
 
 
 async def start():
