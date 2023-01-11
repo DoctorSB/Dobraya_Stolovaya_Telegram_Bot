@@ -2,6 +2,7 @@ import bs4 as bs
 import requests
 import json
 from dowloader import Dowloader
+from dson import Data
 
 
 class Parser:
@@ -36,10 +37,16 @@ class Parser:
             names = names.find_next_sibling('tr')
         return json.dumps(data, indent=4, ensure_ascii=False)
 
+    def save(self):
+        with open('menu.json', 'w') as file:
+            file.write(self.parse())
+
 
 if __name__ == '__main__':
     url = 'https://dobraya.su/menu/'
     dowloader = Dowloader(url)
     html = dowloader.get_html()
-    parser = Parser(html).parse()
-    print(parser)
+    parser = Parser(html)
+    # parser.save()
+    data = Data('menu.json')
+    print(data.data.keys())
