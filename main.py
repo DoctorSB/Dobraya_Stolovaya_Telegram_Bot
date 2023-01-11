@@ -21,15 +21,20 @@ class Parser:
         while names.find_next_sibling('tr'):
 
             if 'table__area' in names['class']:
-                cur_key = names.text
+                cur_key = names.text[1:len(names.text)-1]
                 # print(cur_key, end=' ')
                 data[cur_key] = []
             else:
-                data[cur_key] += [names['data-name']]
+                data[cur_key] += [{'Название': names.find_all('td')[0].text,
+                                   'Выход, гр': names.find_all('td')[1].text,
+                                   'Завтрак': names.find_all('td')[2].text,
+                                   'Обед': names.find_all('td')[3].text,
+                                   'Ужин': names.find_all('td')[4].text,
+                                   'Ккал': names.find_all('td')[5].text}]
 
             # print(names['class'])
             names = names.find_next_sibling('tr')
-        print(data)
+        return json.dumps(data, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
@@ -37,4 +42,4 @@ if __name__ == '__main__':
     dowloader = Dowloader(url)
     html = dowloader.get_html()
     parser = Parser(html).parse()
-    # print(parser)
+    print(parser)
