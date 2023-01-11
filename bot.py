@@ -33,9 +33,12 @@ async def hello(message: types.message):
     await bot.send_message(message.chat.id, 'Меню', reply_markup=panel_choose_target)
 
 
-@dp.message_handler(types.ContentTypes.TEXT)
-async def hello(message: types.message):
-    pass
+@dp.message_handler(content_types=types.ContentTypes.TEXT)
+async def menu(message: types.message):
+    position = message.text
+    if position in data.data.keys():
+        for i in range(len(data.data[message.text])):
+            await bot.send_message(message.chat.id, f'{data.data[message.text][i]["Название"]} - {data.data[message.text][i]["Обед"]}')
 
 
 async def start():
