@@ -47,6 +47,13 @@ if __name__ == '__main__':
     dowloader = Dowloader(url)
     html = dowloader.get_html()
     parser = Parser(html)
-    # parser.save()
+    parser.save()
     data = Data('menu.json')
-    print(data.data.keys())
+
+    btn = []
+
+    for i in range(len(data.data.keys())):
+        btn += [[f'{list(data.data.keys())[i]}']]
+
+    print(btn)
+    # print(data.data.keys())
