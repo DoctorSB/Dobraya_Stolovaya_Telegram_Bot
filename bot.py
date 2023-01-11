@@ -23,7 +23,7 @@ data = Data('menu.json')
 
 panel_choose_target = ReplyKeyboardMarkup(
     keyboard=[[types.KeyboardButton(text=f'{list(data.data.keys())[i]}') for i in range(len(data.data.keys()))]],
-    # resize_keyboard=True
+    resize_keyboard=True
 )
 
 
