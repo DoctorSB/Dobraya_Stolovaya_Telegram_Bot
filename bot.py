@@ -19,13 +19,11 @@ dowloader = Dowloader(url)
 html = dowloader.get_html()
 parser = Parser(html)
 parser.save()
-print(type(parser))
 data = Data('menu.json')
-print(type(data))
 
 panel_choose_target = ReplyKeyboardMarkup(
-    keyboard=[[types.KeyboardButton(text=f'{data.data.keys()}') for _ in range(len(parser))]],
-    resize_keyboard=True
+    keyboard=[[types.KeyboardButton(text=f'{list(data.data.keys())[i]}') for i in range(len(data.data.keys()))]],
+    # resize_keyboard=True
 )
 
 
