@@ -12,7 +12,7 @@ bot = Bot(token='5771094021:AAFzTXEgzQf9oRMl0hAeISE_7ZJadSCGk-k')
 
 dp = Dispatcher(bot)
 
-btn=[]
+btn = []
 
 url = 'https://dobraya.su/menu/'
 dowloader = Dowloader(url)
@@ -22,7 +22,8 @@ parser.save()
 data = Data('menu.json')
 
 panel_choose_target = ReplyKeyboardMarkup(
-    keyboard=[[types.KeyboardButton(text=f'{list(data.data.keys())[i]}') for i in range(len(data.data.keys()))]],
+    keyboard=[[types.KeyboardButton(
+        text=f'{list(data.data.keys())[i]}') for i in range(len(data.data.keys()))]],
     resize_keyboard=True
 )
 
@@ -30,6 +31,12 @@ panel_choose_target = ReplyKeyboardMarkup(
 @dp.message_handler(commands=['start'])
 async def hello(message: types.message):
     await bot.send_message(message.chat.id, 'Меню', reply_markup=panel_choose_target)
+
+
+@dp.message_handler(types.ContentTypes.TEXT)
+async def hello(message: types.message):
+    pass
+
 
 async def start():
     await dp.start_polling(bot)
