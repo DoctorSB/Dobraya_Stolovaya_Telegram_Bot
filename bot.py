@@ -15,7 +15,6 @@ bot = Bot(token='5771094021:AAFzTXEgzQf9oRMl0hAeISE_7ZJadSCGk-k')
 
 dp = Dispatcher(bot)
 
-btn = []
 
 url = 'https://dobraya.su/menu/'
 dowloader = Dowloader(url)
@@ -24,11 +23,17 @@ parser = Parser(html)
 parser.save()
 data = Data('menu.json')
 
-panel_choose_target = ReplyKeyboardMarkup(
-    keyboard=[[types.KeyboardButton(
-        text=f'{list(data.data.keys())[i]}') for i in range(len(data.data.keys()))]],
-    resize_keyboard=True
-)
+btn = []
+
+for i in range(len(data.data.keys())):
+    btn += [[f'{list(data.data.keys())[i]}']]
+# print(btn)
+key_b = []
+for i in range(len(btn)):
+    key_b.append([KeyboardButton(text=btn[i][0])])
+print(type(key_b[0]))
+panel_choose_target = ReplyKeyboardMarkup(keyboard=key_b, resize_keyboard=True)
+print(panel_choose_target)
 
 
 @dp.message_handler(commands=['start'])
@@ -46,7 +51,7 @@ async def menu(message: types.message):
                 time = "Обед"
             elif now > 16:
                 time = "Ужин"
-            if data.data[message.text][i][time] != '—':
+            if data.data[message.text][i][time] != '—' and data.data[message.text][i][time] != '_':
                 await bot.send_message(message.chat.id, f'{data.data[message.text][i]["Название"]} - {data.data[message.text][i][time]}')
 
 
