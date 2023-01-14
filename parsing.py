@@ -1,7 +1,5 @@
 import bs4 as bs
-import requests
 import json
-from dowloader import Dowloader
 
 
 class Parser:
