@@ -15,10 +15,11 @@ class Parser:
             'table', class_='table table__menu')
         names = soup.find_all('tr')[1]
 
-        # for tr in names:
-        print(names['class'][0])
         data = {}
         cur_key = ''
+        img = bs.BeautifulSoup(self.sourse, 'html.parser')
+        img_data = []
+
         while names.find_next_sibling('tr'):
 
             if 'table__area' in names['class']:
@@ -31,7 +32,8 @@ class Parser:
                                    'Завтрак': names.find_all('td')[2].text,
                                    'Обед': names.find_all('td')[3].text,
                                    'Ужин': names.find_all('td')[4].text,
-                                   'Ккал': names.find_all('td')[5].text}]
+                                   'Ккал': names.find_all('td')[5].text,
+                                   'img': names['data-pict']}]
 
             # print(names['class'])
             names = names.find_next_sibling('tr')
@@ -55,5 +57,5 @@ if __name__ == '__main__':
     for i in range(len(data.data.keys())):
         btn += [[f'{list(data.data.keys())[i]}']]
 
-    print(btn)
+    # print(parser.parse())
     # print(data.data.keys())
