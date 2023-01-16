@@ -1,8 +1,5 @@
 import requests
 
-URL = ('https://dobraya.su/menu/')
-
-
 class Dowloader:
     def __init__(self, url, method='GET'):
         self.url = url
