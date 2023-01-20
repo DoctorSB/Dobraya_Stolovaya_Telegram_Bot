@@ -19,7 +19,6 @@ class Parser:
 
             if 'table__area' in names['class']:
                 cur_key = names.text[1:len(names.text)-1].lower()
-                # print(cur_key, end=' ')
                 data[cur_key] = []
             else:
                 data[cur_key] += [{'Название': names.find_all('td')[0].text.lower(),  # тут получаем название позиции и записываем с маленькой буквы
@@ -27,12 +26,12 @@ class Parser:
                                    'Завтрак': names.find_all('td')[2].text,
                                    'Обед': names.find_all('td')[3].text,
                                    'Ужин': names.find_all('td')[4].text,
-                                   'Ккал': names.find_all('td')[5].text}]
-
-            # print(names['class'])
+                                   'Ккал': names.find_all('td')[5].text,
+                                   'img': "https://dobraya.su" + names['data-pict']}]
+                                   
             names = names.find_next_sibling('tr')
         return json.dumps(data, indent=4, ensure_ascii=False)
 
     def save(self):
-        with open('menu.json', 'w') as file:
+        with open('data/menu.json', 'w') as file:
             file.write(self.parse())

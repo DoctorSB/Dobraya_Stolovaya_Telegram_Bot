@@ -1,0 +1,12 @@
+func/__pycache__/__init__.cpython-37.pyc
+func/__pycache__/bot.cpython-37.pyc
+func/__pycache__/config.cpython-37.pyc
+func/__pycache__/dowloader.cpython-37.pyc
+func/__pycache__/dson.cpython-37.pyc
+func/__pycache__/loader.cpython-37.pyc
+func/__pycache__/parsing.cpython-37.pyc
+.env
+__pycache__/dowloader.cpython-37.pyc
+__pycache__/dson.cpython-37.pyc
+__pycache__/parsing.cpython-37.pyc
+data/menu.json
