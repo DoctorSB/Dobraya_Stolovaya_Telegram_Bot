@@ -6,10 +6,10 @@
 телеграм бота, который смог бы узнать что сейчас есть в меню и сколько это стоит
 
 ### Библиотеки
--beatifulsoap4
--aiogram
--datetime
--json
--requests
--environs
--os
+- beatifulsoap4
+- aiogram
+- datetime
+- json
+- requests
+- environs
+- os
