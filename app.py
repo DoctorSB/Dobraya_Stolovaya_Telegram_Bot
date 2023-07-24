@@ -1,10 +1,14 @@
-if __name__ == '__main__':
-    from threading import Timer
-    from aiogram import executor
-    from func.loader import dp
-    from func.bot import *
+import asyncio
+from aiogram.filters import ContentTypesFilter, Command
+from func.loader import dp, bot
+from func.bot import *
 
-    print('бот запущен')
-    t = Timer(1800.0, executor.start_polling(dp))
-    t.start()
+
+
+async def startet():
+    await dp.start_polling()
     
+
+if __name__ == '__main__':
+    print('бот запущен')
+    asyncio.run(startet())
